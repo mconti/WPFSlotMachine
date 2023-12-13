@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Carte\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SlotMachineLib\SlotMachineLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Carte\Carte.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
