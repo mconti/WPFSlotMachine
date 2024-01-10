@@ -57,7 +57,7 @@ namespace conti.maurizio.WPFSlotMachine
         private void InizializzaTimer()
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1); // Imposta l'intervallo a 1 secondo
+            timer.Interval = TimeSpan.FromSeconds(0.1); // Imposta l'intervallo a 1 secondo
             timer.Tick += TimerTick;
         }
 
@@ -91,20 +91,47 @@ namespace conti.maurizio.WPFSlotMachine
 
             // Calcola le coordinate di inizio per lo slicing
             int colonna = indiceCartaCorrente % (bitmapImmagineComplessiva.PixelWidth / larghezzaCarta);
-            int riga = indiceCartaCorrente / (bitmapImmagineComplessiva.PixelWidth / larghezzaCarta);
+            int riga = indiceCartaCorrente / (bitmapImmagineComplessiva.PixelHeight / altezzaCarta);
+
+            int X = colonna * larghezzaCarta;
+            int Y = riga * altezzaCarta;
+
+            stato.Text = $"" +
+                $"Indice: {indiceCartaCorrente}\n" +
+                $"Colonna: {colonna}\n" +
+                $"Riga: {riga}\n" +
+                $"X: {X}\n" +
+                $"Y: {Y}\n" +
+                $"Width: {bitmapImmagineComplessiva.PixelWidth}"+
+                $"Height: {bitmapImmagineComplessiva.PixelHeight}";
 
             // Esegui lo slicing dell'immagine complessiva
-            CroppedBitmap cartaCroppata = new CroppedBitmap(
+            /*CroppedBitmap cartaCroppata = new CroppedBitmap(
+
                 bitmapImmagineComplessiva,
-                new Int32Rect(colonna * larghezzaCarta, riga * altezzaCarta, larghezzaCarta, altezzaCarta)
+                // Colonna  Larghezza  X
+                //    0        78      0
+                //    1        78      78
+                //    2        78      156
+                //    3        78      234
+                //    4        78      312
+
+                new Int32Rect(
+                    X,
+                    Y,
+                    larghezzaCarta,           // Width
+                    altezzaCarta              // Height
+                )
             );
+            ;
+            */
 
             // Vecchio sistema...
             //ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(percorsoImmagine, UriKind.Relative)));
 
-            ImageBrush brush = new ImageBrush(cartaCroppata);
-            brush.Stretch = Stretch.None;
-            cartaCanvas.Background = brush;
+            //ImageBrush brush = new ImageBrush(cartaCroppata);
+            //brush.Stretch = Stretch.None;
+            //cartaCanvas.Background = brush;
         }
 
         private void AvviaAnimazioneButton_Click(object sender, RoutedEventArgs e)

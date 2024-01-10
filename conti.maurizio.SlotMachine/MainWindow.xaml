@@ -25,10 +25,15 @@
                 FontSize="100"
                 Click="AvviaAnimazioneButton_Click"
                 >GO!</Button>
-        
+
         <TextBlock x:Name="lettera" 
                    Grid.Row="1" Grid.Column="1" 
                    FontSize="100" 
                    TextAlignment="Center" VerticalAlignment="Center">A</TextBlock>
+
+        <TextBlock x:Name="stato" 
+                   Grid.Row="0" Grid.Column="1" 
+                   FontSize="20" 
+                   TextAlignment="Center" VerticalAlignment="Center">-</TextBlock>
     </Grid>
 </Window>
